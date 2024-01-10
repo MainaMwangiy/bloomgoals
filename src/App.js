@@ -1,11 +1,14 @@
+import React from 'react';
 import './App.css';
+import { Goals } from './components/Goal';
 
 function App() {
   return (
     <div className="App">
-      <h1>Welcome</h1>
+      <Goals />
     </div>
   );
+
 }
 
 export default App;

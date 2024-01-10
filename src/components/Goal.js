@@ -1,21 +1,38 @@
-import React, { useState, useEffect } from 'react';
-import Flower from './Flower';
-
-const Goal = ({ title }) => {
-    const [progress, setProgress] = useState(0);
+import { useEffect, useState } from "react";
+import { Flower } from './Flower';
+export const Goals = () => {
+    const [milestone, setMilestone] = useState(0);
+    const [flowerProps, setFlowerProps] = useState({
+        size: 1, // Default size
+        color: 'red', // Default color
+    });
 
     useEffect(() => {
-        const interval = setInterval(() => {
-            setProgress(oldProgress => oldProgress < 1 ? oldProgress + 0.1 : 1);
-        }, 1000);
+        // Logic to update flower based on the milestone
+        if (milestone >= 5) {
+            setFlowerProps({ size: 1.5, color: 'green' });
+        } else if (milestone <= -5) {
+            setFlowerProps({ size: 0.5, color: 'brown' });
+        } else {
+            setFlowerProps({ size: 1, color: 'red' });
+        }
+    }, [milestone]);
 
-        return () => clearInterval(interval);
-    }, []);
+    // Function to simulate achieving a goal
+    const achieveGoal = () => {
+        setMilestone(milestone + 1);
+    };
+
+    // Function to simulate failing a goal
+    const failGoal = () => {
+        setMilestone(milestone - 1);
+    };
 
     return (
         <div>
-            <h3>{title}</h3>
-            <Flower progress={progress} />
+            <Flower size={flowerProps.size} color={flowerProps.color} />
+            <button onClick={achieveGoal}>Achieve Goal</button>
+            <button onClick={failGoal}>Fail Goal</button>
         </div>
     );
 };
