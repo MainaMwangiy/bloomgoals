@@ -45,3 +45,63 @@
   transition: transform 2s, color 2s;
   /* Smooth transition for size and color */
 }
+
+.path1 {
+  fill: green;
+}
+
+.path2 {
+  fill: rgb(205, 205, 97);
+}
+
+.path3 {
+  fill: rgb(47, 168, 255);
+}
+
+.path4 {
+  fill: rgb(128, 0, 23);
+}
+
+.path5 {
+  fill: rgb(56, 56, 53);
+}
+
+.path6 {
+  fill: rgb(3, 4, 20);
+}
+
+.path7 {
+  fill: rgb(239, 97, 26);
+}
+
+.path8 {
+  fill: rgb(235, 166, 54);
+}
+
+.path9 {
+  fill: rgb(150, 248, 4);
+}
+
+.path10 {
+  fill: rgb(226, 232, 235);
+}
+
+.path11 {
+  fill: yellow;
+}
+
+.path13 {
+  fill: greenyellow;
+}
+
+.path14 {
+  fill: green;
+}
+
+.path15 {
+  fill: yellow;
+}
+
+.path16 {
+  fill: greenyellow;
+}

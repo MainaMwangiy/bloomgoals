@@ -3,12 +3,11 @@ import { Flower } from './Flower';
 export const Goals = () => {
     const [milestone, setMilestone] = useState(0);
     const [flowerProps, setFlowerProps] = useState({
-        size: 1, // Default size
-        color: 'red', // Default color
+        size: 1,
+        color: '#000', // start with default color black
     });
 
     useEffect(() => {
-        // Logic to update flower based on the milestone
         if (milestone >= 5) {
             setFlowerProps({ size: 1.5, color: 'green' });
         } else if (milestone <= -5) {
