@@ -1,37 +1,43 @@
 import { useEffect, useState } from "react";
 import { Flower } from './Flower';
+
 export const Goals = () => {
-    const [milestone, setMilestone] = useState(0);
-    const [flowerProps, setFlowerProps] = useState({
-        size: 1,
-        color: '#000', // start with default color black
-    });
+    const [goalCount, setGoalCount] = useState(0);
+    const [status, setStatus] = useState('normal');
 
     useEffect(() => {
-        if (milestone >= 5) {
-            setFlowerProps({ size: 1.5, color: 'green' });
-        } else if (milestone <= -5) {
-            setFlowerProps({ size: 0.5, color: 'brown' });
+        if (goalCount > 0) {
+            setStatus('achieved');
+        } else if (goalCount < 0) {
+            setStatus('failed');
         } else {
-            setFlowerProps({ size: 1, color: 'red' });
+            setStatus('normal');
         }
-    }, [milestone]);
+    }, [goalCount]);
 
-    // Function to simulate achieving a goal
     const achieveGoal = () => {
-        setMilestone(milestone + 1);
+        setGoalCount(prevCount => prevCount + 1);
     };
 
-    // Function to simulate failing a goal
     const failGoal = () => {
-        setMilestone(milestone - 1);
+        setGoalCount(prevCount => prevCount - 1);
+    };
+
+    const getScale = () => {
+        return 1 + Math.abs(goalCount) * 0.1;
     };
 
     return (
         <div>
-            <Flower size={flowerProps.size} color={flowerProps.color} />
-            <button onClick={achieveGoal}>Achieve Goal</button>
-            <button onClick={failGoal}>Fail Goal</button>
+            <Flower className={`flower-${status}`} style={{ transform: `scale(${getScale()})` }} />
+            <div className="p-11">
+                <div className="pb-10">
+                    <button className="bg-indigo-600 px-10 py-5 text-xl text-white  uppercase tracking-wildest hover:bg-indigo-500 rounded-full" onClick={achieveGoal}>Achieve Goal</button>
+                </div>
+            </div>
+            <div class="mt-10">
+                <button type="submit" class="bg-indigo-600 px-10 py-5 text-center text-xl uppercase rounded-full font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" onClick={failGoal}>Fail Goal</button>
+            </div>
         </div>
     );
 };
