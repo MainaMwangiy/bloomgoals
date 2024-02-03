@@ -1,8 +1,9 @@
 import React from 'react';
-import { useSpring, animated } from 'react-spring';
+import '../App.css';
+import { ReactComponent as FlowerSVG } from '../images/flower_drawing.svg';
 
-const Flower = ({ progress }) => {
-    const style = useSpring({ transform: `scale(${progress})` });
-
-    return <animated.div style={style} className="flower">🌸</animated.div>;
+export const Flower = ({ className }) => {
+    return (
+        <FlowerSVG className={className} />
+    );
 };
